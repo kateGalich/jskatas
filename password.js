@@ -25,6 +25,7 @@ function obfuscate(someString) {
         break;
       default:
         password += char;
+        break;
     }
   }
 
