@@ -27,22 +27,18 @@ const calculateSalesTax = function(salesData, taxRates) {
   for (e of salesData) {
     let companyName = e.name;
     let taxRate = taxRates[e.province];
-
-    if (undefined == result[companyName]) {
-      result[companyName] = { totalSales: 0, totalTaxes: 0 };
-
-      result[companyName].totalSales = e.sales.reduce(function(a, b) {
-        return a + b;
-      }, 0);
-
-      result[companyName].totalTaxes = result[companyName].totalSales * taxRate;
+    let salesSum = e.sales.reduce(function(a, b) {
+      return a + b;
+    }, 0);
+    if (!result[companyName]) {
+      result[companyName] = {
+        totalSales: salesSum,
+        totalTaxes: salesSum * taxRate
+      };
     } else {
-      console.log('jghvjh');
-      let x = e.sales.reduce(function(a, b) {
-        return a + b;
-      }, 0);
-      result[companyName].totalSales += x;
-      result[companyName].totalTaxes += x * taxRate;
+
+      result[companyName].totalSales += salesSum;
+      result[companyName].totalTaxes += salesSum * taxRate;
 
     }
   }
