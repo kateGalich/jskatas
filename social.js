@@ -53,17 +53,36 @@ const mostPopular = (data) => {
       result[follow] += 1;
     }
   }
-//console.log(result);
+  //console.log(result);
   let counter = 0;
   let name = '';
   for (let key in result) {
     if (result[key] > counter) {
       counter = result[key];
-      name =data[key].name;
+      name = data[key].name;
     }
   }
   return name;
 };
 
+const printAll = (data) => {
+  let result = {};
+
+  for (let propKey in data) {
+    let userName = data[propKey].name;
+
+    result[userName] = { follows: [], followedBy: [] };
+
+    for (let follows of data[propKey].follows) {
+      result[userName].follows.push(data[follows].name);
+
+    }
+  }
+
+  return result;
+};
+
 // console.log(biggestFollower(data));
-console.log(mostPopular(data));
+//console.log(mostPopular(data));
+console.log(printAll(data));
+
