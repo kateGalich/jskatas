@@ -71,13 +71,24 @@ const printAll = (data) => {
   for (let propKey in data) {
     let userName = data[propKey].name;
 
-    result[userName] = { follows: [], followedBy: [] };
+    result[userName] = {
+      follows: [],
+      followedBy: []
+    };
 
     for (let follows of data[propKey].follows) {
       result[userName].follows.push(data[follows].name);
-
     }
   }
+
+  for (let propKey in data) {
+    let userName = data[propKey].name;
+    for (let follows of data[propKey].follows) {
+      let followerName = data[follows].name;
+      result[followerName].followedBy.push(userName);
+    }
+  }
+
 
   return result;
 };
