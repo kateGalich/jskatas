@@ -93,7 +93,24 @@ const printAll = (data) => {
   return result;
 };
 
+const unrequitedFollowers = (data) => {
+  let result = [];
+  for (let userKey in data) {
+    let user = data[userKey];
+    //console.log(data[userKey].name);
+    for (let follow of user.follows) {
+      //console.log(data[follow].follows.includes(userKey));
+
+      if (!data[follow].follows.includes(userKey)) {
+        result.push(user.name);
+        break;
+      }
+    }
+  }
+  return result;
+};
+
 // console.log(biggestFollower(data));
 //console.log(mostPopular(data));
-console.log(printAll(data));
-
+//console.log(printAll(data));
+console.log(unrequitedFollowers(data));
