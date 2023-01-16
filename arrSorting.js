@@ -1,8 +1,12 @@
-// sort the array numerically
+// sort the array numerically. Make a copy of array to preserve original
 const array = [10, 2, 5, 1, 9];
-array.sort(function(a, b) {
+const newArr = array.map(x => x);
+newArr.sort(function(a, b) {
   return a - b;
 });
+
+console.log(array);
+console.log(newArr);
 
 // Sorting function, that sorts the array first by the name ascending alphabetically, and then by descending age.
 const students = [
@@ -22,4 +26,4 @@ students.sort(function(a, b) {
   }
 });
 
-console.log(students);
+//console.log(students);
