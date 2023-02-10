@@ -1,0 +1,48 @@
+<html>
+
+<body>
+  <form onsubmit="return false">
+    <label>
+      Speed: <input id="speedBox">
+    </label>
+    <label>
+      Distance: <input id="distanceBox">
+    </label>
+    <label>
+      Time: <input id="timeBox">
+    </label>
+    <button id="computeBtn">
+      Compute
+    </button>
+    <button type="reset">
+      Reset
+    </button>
+  </form>
+
+  <script type="module">
+    let speedBox = document.getElementById("speedBox");
+    let distanceBox = document.getElementById("distanceBox");
+    let timeBox = document.getElementById("timeBox");
+    let computeBtn = document.getElementById("computeBtn");
+
+    computeBtn.addEventListener("click", () => {
+      let speedValue = speedBox.value;
+      let distanceValue = distanceBox.value;
+      let timeValue = timeBox.value;
+      if (!speedValue) {
+        speedValue = distanceValue / timeValue;
+        speedBox.value = speedValue;
+      } else if (!distanceValue) {
+        distanceValue = speedValue * timeValue;
+        distanceBox.value = distanceValue;
+      } else if (!timeValue) {
+        timeValue = distanceValue / speedValue;
+        timeBox.value = timeValue;
+      }
+
+    });
+
+  </script>
+</body>
+
+</html>
